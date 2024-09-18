@@ -8,7 +8,6 @@ import 'package:statemanagementprovider/presentation/addpage/add_student.dart';
 import 'package:statemanagementprovider/presentation/search/search_page.dart';
 import 'package:statemanagementprovider/provider/home_page_provider.dart';
 
-
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
@@ -42,9 +41,13 @@ class Homepage extends StatelessWidget {
       onWillPop: () => _onWillPop(context),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.deepPurple,
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: const Text('Student app'),
+          title: const Text(
+            'STUDENT LIST',
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             Padding(
               padding: const EdgeInsets.all(10),
@@ -57,13 +60,25 @@ class Homepage extends StatelessWidget {
                     ),
                   );
                 },
-                icon: const Icon(Icons.search),
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
         ),
         body: Consumer<HomePageProvider>(
           builder: (context, homeprovider, child) {
+            // ignore: unnecessary_null_comparison
+            if (homeprovider.students.isEmpty || homeprovider.students == null) {
+              return const Center(
+                child: Text(
+                  'No Students Avilable',
+                  style: TextStyle(fontSize: 15, color: Colors.red),
+                ),
+              );
+            }
             return ListView.separated(
               separatorBuilder: (context, index) => kheight10,
               itemCount: homeprovider.students.length,

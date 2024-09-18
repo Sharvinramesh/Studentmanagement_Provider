@@ -14,10 +14,14 @@ class AddStudents extends StatefulWidget {
   const AddStudents({
     super.key,
   });
-
+  
+  
   @override
   State<AddStudents> createState() => _AddStudentsState();
+
+  
 }
+
 
 class _AddStudentsState extends State<AddStudents> {
   final nameEditingController = TextEditingController();
@@ -28,6 +32,16 @@ class _AddStudentsState extends State<AddStudents> {
   final pinEditingController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final DatabaseHelper databaseHelper = DatabaseHelper();
+
+
+    @override
+  void initState() {
+    super.initState();
+    // Clear the image when the page is opened
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AddPageProvider>(context, listen: false).clearImage();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
