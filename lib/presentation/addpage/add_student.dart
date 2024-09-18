@@ -145,7 +145,7 @@ class _AddStudentsState extends State<AddStudents> {
                     kheight10,
                     CustomTextFormField(
                       controller: pinEditingController,
-                      labelText: 'pincode',
+                      labelText: 'Pincode',
                       keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
